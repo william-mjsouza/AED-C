@@ -5,5 +5,9 @@ jobs:
     runs-on: windows-latest
     steps:
     - uses: actions/checkout@v4
+    
+    - name: Setup MSBuild
+      uses: microsoft/setup-msbuild@v1
+    
     - name: Build DataStructures
       run: msbuild src/DataStructures/DataStructures.sln /p:Configuration=Release
