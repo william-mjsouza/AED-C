@@ -13,5 +13,12 @@ int main() {
 
     printLinkedList(&head); // Lista = 128 -> 64 -> 32 -> NULL
 
+    inserAtEnd(&head, 40);
+    inserAtEnd(&head, 80);
+    printLinkedList(&head); // Lista = 128 -> 64 -> 32 -> 40 -> 80 -> NULL
+
+    insertAfterValue(&head, 10, -4);
+    printLinkedList(&head); // Lista = 128 -> 64 -> 32 -> 40 -> 10 -> 80 -> NULL
+
     return 0;
 }
