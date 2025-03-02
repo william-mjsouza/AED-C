@@ -80,6 +80,41 @@ void insertAfterValue(Node** head, int data, int value) {
     }
 }
 
+void removeValue(Node** head, int value) {
+    if (*head == NULL) {
+        // Trata o erro de remover numa lista vazia
+        printf("Erro: A lista está vazia!\n");
+        return;
+    }
+    else {
+        // Cria um ponteiro remove para marcar o nó que será removido e um ponteiro temporário temp para percorrer a lista
+        Node* remove = NULL;
+        Node* temp = *head; // Começa a percorrer pela cabeça
+        
+        if ((*head)->data == value) {
+            // Trata o erro de remover a cabeça
+            *head = temp->next;
+            free(temp);
+            return;
+        }
+
+        // Enquanto houver um próximo e o valor desse próximo não for o valor informado
+        while (temp->next != NULL && temp->next->data != value) {
+            temp = temp->next;  // Avança um nó
+        }
+        // Agora temp aponta pro nó anterior ao que será removido ou para NULL se não achou o valor
+        if (temp->next == NULL) {
+            // Trata o erro de não ter achado o valor
+            printf("Erro: O valor %d não existe na lista!\n", value);
+        }
+        else {
+            remove = temp->next;
+            temp->next = remove->next;
+            free(remove);
+        }
+    }
+}
+
 void printLinkedList(Node** head) {
     if (*head != NULL) {
         // Percorre toda a lista com um ponteiro temporário
@@ -93,5 +128,21 @@ void printLinkedList(Node** head) {
     }
     else {
         printf("Lista = vazia!\n");
+    }
+}
+
+int linkedListLength(Node** head) {
+    if (*head == NULL) {
+        return 0;   // A lista não possui nenhum nó
+    }
+    else {
+        // Percorre a lista com um ponteiro temporário temp até chegar em NULL
+        Node* temp = *head; // Começa a percorrer pela cabeça
+        int length = 0;
+        while (temp != NULL) {
+            temp = temp->next;  // Avança um nó
+            length++;
+        }
+        return length;  // Retorna o tamanho da lista
     }
 }

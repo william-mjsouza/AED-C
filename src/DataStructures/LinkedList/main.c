@@ -17,8 +17,13 @@ int main() {
     inserAtEnd(&head, 80);
     printLinkedList(&head); // Lista = 128 -> 64 -> 32 -> 40 -> 80 -> NULL
 
-    insertAfterValue(&head, 10, -4);
+    insertAfterValue(&head, 10, 40);
     printLinkedList(&head); // Lista = 128 -> 64 -> 32 -> 40 -> 10 -> 80 -> NULL
+
+    removeValue(&head, 64);
+    printLinkedList(&head); // Lista = 128 -> 32 -> 40 -> 10 -> 80 -> NULL
+
+    printf("A lista possui %d elementos.\n", linkedListLength(&head)); // 5
 
     return 0;
 }
