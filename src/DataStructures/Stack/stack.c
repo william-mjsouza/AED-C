@@ -14,6 +14,17 @@ void push(Node** top, char* data) {
 	}
 }
 
+Node* pop(Node** top) {
+	if (*top == NULL) {
+		printf("A lista está vazia!\n");
+	}
+	else {
+		Node* remove = *top;
+		*top = remove->next;
+		return remove;
+	}
+}
+
 void print(Node** top) {
 	if (*top == NULL) {
 		printf("Pilha = Vazia\n");
@@ -27,6 +38,21 @@ void print(Node** top) {
 			printf("        v\n");
 			temp = temp->next;
 		}
-		printf("        NULL\n");
+		printf("        NULL\n\n");
+	}
+}
+
+int size(Node** top) {
+	if (*top == NULL) {
+		return 0;
+	}
+	else {
+		Node* temp = *top;
+		int i = 0;
+		while (temp != NULL) {
+			i++;
+			temp = temp->next;
+		}
+		return i;
 	}
 }

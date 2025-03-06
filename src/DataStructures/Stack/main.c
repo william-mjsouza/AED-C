@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "stack.h"
 
 int main() {
@@ -12,6 +13,14 @@ int main() {
 
 	// Exibe a pilha
 	print(&top);
+
+	// Desempilha os comandos
+	Node* temp = pop(&top);
+	printf("Nó removido = %s\n", temp->data);
+	free(temp);	// Libera a memória após o seu uso
+	print(&top);
+
+	printf("A pilha possui %d nós.\n", size(&top));
 
 	return 0;
 }
