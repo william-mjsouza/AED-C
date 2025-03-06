@@ -4,8 +4,11 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-    - name: Checkout code
+    - name: Checkout code (including exercises)
       uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Importante para trazer todas as branches
+        ref: main       # Ou o nome da branch onde os exercícios estão
 
     - name: Setup MSBuild
       uses: microsoft/setup-msbuild@v1.3.1
@@ -16,8 +19,8 @@ jobs:
           /p:Configuration=Release `
           /p:Platform="x64"
 
-    - name: Build Exercises
+    - name: Build LinkedList Exercises
       run: |
-        msbuild exercises/LinkedList/LinkedListExercises/Exercise01/Exercise01.vcxproj `
+        msbuild "exercises/LinkedList/LinkedListExercises.sln" `
           /p:Configuration=Release `
           /p:Platform="x64"
