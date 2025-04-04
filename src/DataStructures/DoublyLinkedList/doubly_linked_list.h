@@ -15,6 +15,14 @@ typedef struct Node {
 
 // Protótipos:
 
+/* ==========================================================================
+ * Principais Operações
+ * ========================================================================== */
+
+/* ==========================================================================
+ * Inserção
+ * ========================================================================== */
+
 /**
  * @brief Insere um novo nó no início da lista duplamente encadeada.
  * 
@@ -32,6 +40,30 @@ void insertAtBeginning(Node** head, int data);
  * @return void
  */
 void insertAtEnd(Node** head, int data);
+
+/* ==========================================================================
+ * Remoção
+ * ========================================================================== */
+
+/**
+ * @brief Remove o primeiro nó da lista duplamente encadeada.
+ * 
+ * @param head Ponteiro para modificar o ponteiro que marca o 1º nó da lista.
+ * @return Node* Nó que foi desconectado da lista.
+ */
+Node* removeAtBeginning(Node** head);
+
+/**
+ * @brief Remove o último nó da lista duplamente encadeada.
+ * 
+ * @param head Ponteiro para modificar o ponteiro que marca o 1° nó da lista.
+ * @return Node* Nó que foi desconectado da lista.
+ */
+Node* removeAtEnd(Node** head);
+
+/* ==========================================================================
+ * Operações Úteis
+ * ========================================================================== */
 
 /**
  * @brief Exibe a lista duplamente encadeada.

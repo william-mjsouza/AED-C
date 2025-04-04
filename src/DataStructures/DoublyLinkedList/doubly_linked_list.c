@@ -70,6 +70,58 @@ void insertAtEnd(Node** head, int data) {
 	newNode->prev = temp;
 }
 
+Node* removeAtBeginning(Node** head) {
+	/*
+	 * Se a lista estiver vazia, apenas avisa, pois não há o que remover.
+	 */
+	if (*head == NULL) {
+		printf("A lista está vazia!\n");
+		return NULL;
+	}
+
+	/*
+	 * Mas se há pelo menos um nó na lista, deve-se atualizar o head:
+	 * 1º - Marca o head para remoção.
+	 * 2º - Atualiza o head (o segundo nó vira o primeiro).
+	 * 3º - Atualiza o prev do novo head.
+	 */
+	Node* remove = *head;
+	*head = (*head)->next;
+	if (*head != NULL) {
+		(*head)->prev = NULL;	/**< Desconecta da lista o antigo primeiro nó */
+	}
+	return remove;
+}
+
+Node* removeAtEnd(Node** head) {
+	/*
+	 * Se a lista estiver vazia, apenas avisa, pois não há o que remover.
+	 */
+	if (*head == NULL) {
+		printf("A lista está vazia!\n");
+		return NULL;
+	}
+
+	/**
+	 * Mas se há pelo menos um nó na lista, deve-se chegar até o último nó da lista e atualizar
+	 * os pomteiros do nó anterior a ele (se houver um anterior, esse penúltimo vira último):
+	 */
+	Node* remove = *head;
+	while (remove->next != NULL) {
+		remove = remove->next;
+	}
+
+	// Se tiver apenas 1 nó na lista
+	if (remove->prev == NULL) {
+		*head = NULL;							/**< Atualiza o head */
+	}
+	// Mas se tiver 2 ou mais nós na lista
+	else {
+		remove->prev->next = NULL;				/**> Atualiza o penúltimo nó */
+	}
+	return remove;
+}
+
 void print(Node** head) {
 	/*
 	 * Se a lista estiver vazia, apenas exibe a mensagem de aviso.
@@ -80,13 +132,14 @@ void print(Node** head) {
 	}
 
 	/*
-	 * Dado que a lista não está vazia, ela é percorrida da cabeça até o último nó exibindo os
-	 * dados armazenados em cada nó.
+	 * Dado que a lista não está vazia, ela é percorrida com um ponteiro auxiliar temporário temp 
+	 * da cabeça até o último nó exibindo os dados armazenados em cada nó.
 	 */
+	Node* temp = *head;
 	printf("Lista = ");
-	while (*head != NULL) {
-		printf("%d -> ", (*head)->data);
-		*head = (*head)->next;
+	while (temp != NULL) {
+		printf("%d -> ", temp->data);
+		temp = temp->next;
 	}
 	printf("NULL\n");
 }
